@@ -1,6 +1,12 @@
-# Getting Started with Create React App
+# Projeto inicial React
+
+Projeto realizado para o estudo de react.
+Criação de um aplicativo para listagem e organizações de repositorios (GitHub).
+Os repositorios favoritos do usuário serão listados e organizados em uma lista de exibisão. 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
 
 ## Available Scripts
 
