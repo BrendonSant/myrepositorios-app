@@ -4,19 +4,19 @@ import { FaPlus } from 'react-icons/fa';
 export default function Button({ loading }) {
     return (
         <button type="submit" className="relative">
-            <div className="bg-black ml-1 p-2 rounded flex items-center justify-center transition-all duration-300">
+            <div className="bg-black ml-1 p-2 h-8 w-8 rounded flex items-center justify-center transition-all duration-300">
                 {loading ? (
                     <svg
-                        className="h-5 w-5 text-white animate-spin"
+                        className=" h-4 w-4 text-white animate-spin"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                     >
                         <circle
                             className="opacity-25"
-                            cx="12"
-                            cy="12"
-                            r="10"
+                            cx="14"
+                            cy="14"
+                            r="12"
                             stroke="currentColor"
                             strokeWidth="4"
                         />
