@@ -1,5 +1,7 @@
 # Projeto inicial React
 
+Brendon Santos
+
 Projeto realizado para o estudo de react.
 Criação de um aplicativo para listagem e organizações de repositorios (GitHub).
 Os repositorios favoritos do usuário serão listados e organizados em uma lista de exibisão. 
