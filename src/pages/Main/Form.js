@@ -1,20 +1,44 @@
 
-import React, {useState} from "react";
+import React, {useState, useCallback} from "react";
 
 import Button from "./Button";  // Certifique-se de que o caminho está correto
 
+import api from '../../services/api';
 export default function Form() {
 
     const [newRepo, setNewRepo] = useState('');
+    const [repositorios, setRepositorios] = useState('');
+    const [loading, setLoading] = useState(false);
 
-    function handleinputChange(e){
-        setNewRepo(e.target.value);
-    }
 
-    function handleSubmit(e){
+    const handleSubmit = useCallback((e) =>{
         e.preventDefault();
 
-        console.log(newRepo);
+        async function submit(){
+            setLoading(true);
+            try{
+                const response = await api.get(`repos/${newRepo}`);
+
+                const data = {
+                    name: response.data.full_name,
+                }
+
+                setRepositorios([...repositorios, data]);
+                setNewRepo('');
+            }catch(error){
+                console.log(error);
+            }finally{
+                setLoading(false);
+            }
+            
+        
+        }
+
+        submit();
+    }, [newRepo, repositorios]);
+       
+    function handleinputChange(e){
+        setNewRepo(e.target.value);
     }
 
     return (
@@ -24,7 +48,7 @@ export default function Form() {
             value={newRepo}
             onChange={handleinputChange}
              />
-            <Button />
+            <Button loading={loading} />
         </form>
     );
 }
