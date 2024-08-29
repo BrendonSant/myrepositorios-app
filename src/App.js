@@ -1,11 +1,12 @@
 
 import './index.css';
+import Rotas from './routes';
+
+
 
 function App() {
   return (
-    <div className="App flex justify-center w-full bg-red-400">
-      <h1 className="font-extrabold"> Ola mundo!</h1>
-    </div>
+    <Rotas />
   );
 }
 

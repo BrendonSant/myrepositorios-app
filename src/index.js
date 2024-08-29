@@ -7,6 +7,6 @@ import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <App className="m-0 p-0 outline-0 box-border"  />
   </React.StrictMode>
 );
