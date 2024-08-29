@@ -4,7 +4,10 @@ import { FaPlus } from 'react-icons/fa';  // Você importou o ícone FaPlus corr
 export default function Button() {
     return (
         <button>
-            <FaPlus className=" ml-1" color="black" size={14} />
+            <div className=" bg-black   ml-1 p-2 rounded ">
+                <FaPlus  color="white" size={14} />
+            </div>
+
         </button>
     );
 }

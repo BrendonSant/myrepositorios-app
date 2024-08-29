@@ -1,5 +1,5 @@
 import React from "react";
-import 'C:/Users/brend/myrepositorios-app/src/index.css';
+import '/workspaces/myrepositorios-app/src/index.css';
 import {FaGithub} from 'react-icons/fa';
 import Form from "./Form";
 
