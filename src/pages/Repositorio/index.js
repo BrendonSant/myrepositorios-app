@@ -43,7 +43,7 @@ export default function Repositorio(match){
         )
     }
     return(
-        <
+        
         <div className=" p-4 flex bg-whiteflex  max-w-3xl bg-white h-fit mx-6 flex-col w-2/3 min-w-80 rounded-lg mt-8 justify-center items-center" > 
             <div className=" flex flex-col justify-center items-center"> 
                <img className=" size-20 "
