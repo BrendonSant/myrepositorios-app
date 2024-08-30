@@ -10,9 +10,9 @@ export default function Lists({repositorios, setRepositorios}) {
   };
 
   return (
-    <ul className="list-disc  bg-gray-300 w-full mt-6">
+    <ul className="list-disc w-full mt-6  my-1">
       {repositorios.map((repo, index) => (
-        <li key={repo.name} className="py-1 flex justify-between items-center mx-8">
+        <li key={repo.name} className="px-2 py-1 flex justify-between items-center mx-8 my-1 rounded  bg-gray-200 ">
           <div className="flex items-center">
             <DeleteRepo onClick={() => handleDelete(repo.name)} />
             <span className="mr-4 font-sans">{repo.name}</span>

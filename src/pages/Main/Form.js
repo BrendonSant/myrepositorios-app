@@ -64,7 +64,7 @@ export default function Form({ repositorios, setRepositorios }) {
             <input
                 className={`h-8 rounded border border-gray-400 focus:bg-gray-200 outline-0 w-3/4 ${alert === true ? 'border-red-300' : ''}`}
                 type="text"
-                placeholder="Adicionar repositórios"
+                placeholder="  Adicionar repositórios"
                 value={newRepo}
                 onChange={handleInputChange}
             />
