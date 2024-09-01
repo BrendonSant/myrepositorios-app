@@ -3,23 +3,34 @@ import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 
 
-export default function Pagebutton({onClick, text}){
+export default function Pagebutton({onClick, text, page}){
     
+    const isDisabled = text === 'Voltar' && page === 1;
 
-    if(text === 'Voltar'){
-        const icon = <FaArrowLeft />              
+    if (text === 'Voltar'){
+        return(
+            <button
+            disabled={isDisabled}
+            className={`flex mx-1 items-center hover:underline ${isDisabled ? 'opacity-50 cursor-not-allowed' : 'opacity-100'}`}
+            type='button'
+            onClick={onClick}
+        >
+            <FaArrowLeft/>  
+            <p>{text}</p>  
+            </button>
+        );
+                 
         }else{
-        const icon = <FaArrowRight />   
+            return(
+                <button  className=" flex mx-1 items-center hover:underline" type='button' onClick={onClick}>
+                   
+                <p>{text}</p>
+                <FaArrowRight /> 
+                </button>
+            )  ;
         }
     
 
-    return(
-
-
-        <button type='button' onClick={onClick}>
-           
-           <p>{text}</p>
-        </button>
-    );
+    
  
 }
