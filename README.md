@@ -51,11 +51,11 @@ O hook `useState` é amplamente utilizado neste projeto para gerenciar o estado 
   ```javascript
   const [tasks, setTasks] = useState<TaskProps[]>([]);
 
-`useEffect`
+### `useEffect`
 
 O hook useEffect é utilizado para lidar com efeitos colaterais, como buscar dados da API do GitHub e sincronizar o estado da aplicação com o Firestore.
 
-- **Carregamento de Tarefas: Um useEffect é utilizado para carregar as tarefas salvas do Firestore quando o componente é montado. A função onSnapshot é usada para escutar as alterações em tempo real.
+- Carregamento de Tarefas: Um useEffect é utilizado para carregar as tarefas salvas do Firestore quando o componente é montado. A função onSnapshot é usada para escutar as alterações em tempo real.
 
   ```javascript
       useEffect(() => {
@@ -76,7 +76,7 @@ O hook useEffect é utilizado para lidar com efeitos colaterais, como buscar dad
       loadTarefas();
     }, [user?.email]); 
 
-- **Busca na API do GitHub: Outro exemplo de useEffect é para fazer a requisição à API do GitHub sempre que o usuário submeter uma pesquisa.
+- Busca na API do GitHub: Outro exemplo de useEffect é para fazer a requisição à API do GitHub sempre que o usuário submeter uma pesquisa.
     ```javascript
      useEffect(() => {
   if (input) {
@@ -110,7 +110,7 @@ Para executar este projeto localmente, siga os passos abaixo:
 
   * Abra o navegador e vá para http://localhost:3000.
 
-##Conclusão
+## Conclusão
 
 Este projeto serviu como uma excelente oportunidade para aprofundar o conhecimento em React, especialmente na utilização dos hooks `useState` e `useEffect`. Ao trabalhar com estado e efeitos colaterais, foi possível entender melhor como gerenciar e sincronizar o estado da interface com fontes de dados externas como APIs e bancos de dados em tempo real.
 
