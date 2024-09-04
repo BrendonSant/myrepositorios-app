@@ -92,20 +92,19 @@ O hook useEffect é utilizado para lidar com efeitos colaterais, como buscar dad
 
 Para executar este projeto localmente, siga os passos abaixo:
 1.Clone o repositório:
-
     ```bash
+    
     git clone https://github.com/BrendonSant/myrepositorios-app.git
     
 2.Instale as dependências:
-
     ```bash
-    cd myrepositorios-app
-    npm install
-
+  
+      cd myrepositorios-app                  
+       
 3.Inicie a aplicação:
-
      ```bash
-      npm run dev
+     
+       npm run dev
 
 4.Acesse a aplicação:
 
