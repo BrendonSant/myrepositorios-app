@@ -29,11 +29,11 @@ A aplicação permite ao usuário pesquisar por repositórios do GitHub. Isso é
 
 ### Salvamento de Repositórios
 
-Os usuários podem salvar repositórios que acharem interessantes. Esses repositórios são armazenados no Firestore, permitindo que os usuários tenham acesso a eles mesmo após recarregar a página.
+Os usuários podem salvar repositórios que acharem interessantes. Esses repositórios são armazenados no localStorage, permitindo que os usuários tenham acesso a eles mesmo após recarregar a página.
 
 ### Exclusão de Repositórios
 
-Os usuários podem excluir repositórios previamente salvos. Essa ação remove o repositório do Firestore, refletindo imediatamente na interface do usuário.
+Os usuários podem excluir repositórios previamente salvos. Essa ação remove o repositório do localStorage, refletindo imediatamente na interface do usuário.
 
 ## Aprendizados com `useState` e `useEffect`
 
