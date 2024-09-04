@@ -19,6 +19,7 @@ Este projeto é um excelente exemplo de como utilizar `useState` e `useEffect` p
 - **React**: Biblioteca principal utilizada para construir a interface do usuário.
 - **Axios**: Biblioteca utilizada para fazer as requisições HTTP à API do GitHub.
 - **Tailwind CSS**: Framework de CSS utilizado para a estilização dos componentes.
+- **localStorage**: Ultilizado para armazenar os repositórios selecionados.
 
 
 ## Funcionalidades Principais
