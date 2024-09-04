@@ -1,78 +1,128 @@
-# Projeto inicial React
+# MyRepositorios App
 
-Brendon Santos
+**Autor:** Brendon Santos
 
-Projeto realizado para o estudo de react.
-Criação de um aplicativo para listagem e organizações de repositorios (GitHub).
-Os repositorios favoritos do usuário serão listados e organizados em uma lista de exibisão. 
+Este é um projeto criado com o objetivo de estudar e aprofundar os conhecimentos em React. O **MyRepositorios App** é uma aplicação web que permite aos usuários pesquisar e salvar repositórios do GitHub. A aplicação utiliza a API do próprio GitHub para realizar buscas em tempo real.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Visão Geral
+
+O **MyRepositorios App** oferece uma interface simples e intuitiva, onde os usuários podem:
+
+- Pesquisar repositórios do GitHub por nome.
+- Salvar repositórios favoritos para referência futura.
+- Excluir repositórios salvos.
+
+Este projeto é um excelente exemplo de como utilizar `useState` e `useEffect` para gerenciar o estado e os efeitos colaterais em uma aplicação React.
+
+## Tecnologias Utilizadas
+
+- **React**: Biblioteca principal utilizada para construir a interface do usuário.
+- **Axios**: Biblioteca utilizada para fazer as requisições HTTP à API do GitHub.
+- **Tailwind CSS**: Framework de CSS utilizado para a estilização dos componentes.
+
+
+## Funcionalidades Principais
+
+### Pesquisa de Repositórios
+
+A aplicação permite ao usuário pesquisar por repositórios do GitHub. Isso é feito através de uma requisição à API do GitHub, utilizando o nome do repositório como termo de busca.
+
+### Salvamento de Repositórios
+
+Os usuários podem salvar repositórios que acharem interessantes. Esses repositórios são armazenados no Firestore, permitindo que os usuários tenham acesso a eles mesmo após recarregar a página.
+
+### Exclusão de Repositórios
+
+Os usuários podem excluir repositórios previamente salvos. Essa ação remove o repositório do Firestore, refletindo imediatamente na interface do usuário.
+
+## Aprendizados com `useState` e `useEffect`
+
+### `useState`
+
+O hook `useState` é amplamente utilizado neste projeto para gerenciar o estado local dos componentes. Por exemplo:
+
+- **Gerenciamento do Input de Pesquisa**: O estado do campo de pesquisa é gerenciado com `useState`, permitindo que a aplicação reaja às mudanças de entrada do usuário.
+  
+  ```javascript
+  const [input, setInput] = useState("");
+
+- **Gerenciamento de Tarefas: O estado das tarefas (repositórios) é gerenciado utilizando um array de objetos, o que permite à aplicação adicionar, listar e excluir repositórios salvos.
+  
+  ```javascript
+  const [tasks, setTasks] = useState<TaskProps[]>([]);
+
+`useEffect`
+
+O hook useEffect é utilizado para lidar com efeitos colaterais, como buscar dados da API do GitHub e sincronizar o estado da aplicação com o Firestore.
+
+- **Carregamento de Tarefas: Um useEffect é utilizado para carregar as tarefas salvas do Firestore quando o componente é montado. A função onSnapshot é usada para escutar as alterações em tempo real.
+
+  ```javascript
+      useEffect(() => {
+      async function loadTarefas() {
+        const tarefasRef = collection(db, "tarefas");
+        const q = query(tarefasRef, orderBy("created", "desc"), where("user", "==", user?.email));
+        onSnapshot(q, (snapshot) => {
+          let lista = [] as TaskProps[];
+          snapshot.forEach((doc) => {
+            lista.push({
+              id: doc.id,
+              ...doc.data(),
+            } as TaskProps);
+          });
+          setTasks(lista);
+        });
+      }
+      loadTarefas();
+    }, [user?.email]); 
+
+- **Busca na API do GitHub: Outro exemplo de useEffect é para fazer a requisição à API do GitHub sempre que o usuário submeter uma pesquisa.
+    ```javascript
+     useEffect(() => {
+  if (input) {
+    // Função para buscar repositórios no GitHub
+    const fetchRepos = async () => {
+      const response = await axios.get(`https://api.github.com/search/repositories?q=${input}`);
+      setRepos(response.data.items);
+    };
+    fetchRepos();
+  }}, [input]);
+
+## Como executar o projeto.
+
+Para executar este projeto localmente, siga os passos abaixo:
+1.Clone o repositório:
+
+    ```bash
+    git clone https://github.com/BrendonSant/myrepositorios-app.git
+    
+2.Instale as dependências:
+
+    ```bash
+    cd myrepositorios-app
+    npm install
+
+3.Inicie a aplicação:
+
+     ```bash
+      npm run dev
+
+4.Acesse a aplicação:
+
+  * Abra o navegador e vá para http://localhost:3000.
+
+##Conclusão
+
+Este projeto serviu como uma excelente oportunidade para aprofundar o conhecimento em React, especialmente na utilização dos hooks `useState` e `useEffect`. Ao trabalhar com estado e efeitos colaterais, foi possível entender melhor como gerenciar e sincronizar o estado da interface com fontes de dados externas como APIs e bancos de dados em tempo real.
+
+
+  
+  
 
 
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+  
+  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
