@@ -56,38 +56,86 @@ O hook `useState` é amplamente utilizado neste projeto para gerenciar o estado 
 
 O hook useEffect é utilizado para lidar com efeitos colaterais, como buscar dados da API do GitHub e sincronizar o estado da aplicação com o Firestore.
 
-- Carregamento de Tarefas: Um useEffect é utilizado para carregar as tarefas salvas do Firestore quando o componente é montado. A função onSnapshot é usada para escutar as alterações em tempo real.
+- Carregamento de Tarefas: Um useEffect é utilizado para carregar e salvar as tarefas no localStorage .
 
   ```javascript
-      useEffect(() => {
-      async function loadTarefas() {
-        const tarefasRef = collection(db, "tarefas");
-        const q = query(tarefasRef, orderBy("created", "desc"), where("user", "==", user?.email));
-        onSnapshot(q, (snapshot) => {
-          let lista = [] as TaskProps[];
-          snapshot.forEach((doc) => {
-            lista.push({
-              id: doc.id,
-              ...doc.data(),
-            } as TaskProps);
-          });
-          setTasks(lista);
-        });
-      }
-      loadTarefas();
-    }, [user?.email]); 
+     
+    // Buscar salvamentos do localStorage
+    useEffect(() => {
+        const repoStorage = localStorage.getItem('repos');
+        console.log("Carregando dados do localStorage:", repoStorage);
+
+        if (repoStorage) {
+            setRepositorios(JSON.parse(repoStorage));
+        }
+    }, []);
+
+    // Salvar alterações no localStorage
+    useEffect(() => {
+        console.log("Salvando dados no localStorage:", repositorios);
+        localStorage.setItem('repos', JSON.stringify(repositorios));
+    }, [repositorios]);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setAlert(null);
+
+        try {
+            if (newRepo === '') {
+                throw new Error('Você precisa indicar um repositório!');
+            }
+
+            const response = await api.get(`repos/${newRepo}`);
+            const hasRepo = repositorios.find(repo => repo.name === newRepo);
+
+            if (hasRepo) {
+                throw new Error('Repositório Duplicado');
+            }
+
+            const data = {
+                name: response.data.full_name,
+            };
+
+            setRepositorios([...repositorios, data]);
+            setNewRepo('');
+        } catch (error) {
+            setAlert(true);
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleInputChange = (e) => {
+        setNewRepo(e.target.value);
+        setAlert(null);
+    };
 
 - Busca na API do GitHub: Outro exemplo de useEffect é para fazer a requisição à API do GitHub sempre que o usuário submeter uma pesquisa.
     ```javascript
-     useEffect(() => {
-  if (input) {
-    // Função para buscar repositórios no GitHub
-    const fetchRepos = async () => {
-      const response = await axios.get(`https://api.github.com/search/repositories?q=${input}`);
-      setRepos(response.data.items);
-    };
-    fetchRepos();
-  }}, [input]);
+    useEffect(() => {
+        async function load() {
+            const nomeRepo = name.repositorio;
+
+            const [repositorioData, issuesData] = await Promise.all([
+                api.get(`/repos/${nomeRepo}`),
+                api.get(`/repos/${nomeRepo}/issues`, {
+                    params: {
+                        state: filter, // Use o filtro no request
+                        per_page: 5,
+                        page
+                    }
+                })
+            ]);
+
+            setRepositorio(repositorioData.data);
+            setIssues(issuesData.data);
+            setLoading(false);
+        }
+
+        load();
+    }, [filter, page, name.repositorio]); // Reexecuta o efeito quando o filtro ou a página muda
 
 ## Como executar o projeto.
 
