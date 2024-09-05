@@ -4,7 +4,7 @@
 
 Este é um projeto criado com o objetivo de estudar e aprofundar os conhecimentos em React. O **MyRepositorios App** é uma aplicação web que permite aos usuários pesquisar e salvar repositórios do GitHub. A aplicação utiliza a API do próprio GitHub para realizar buscas em tempo real.
 
-## Visão Geral
+## :eyes: Visão Geral
 
 O **MyRepositorios App** oferece uma interface simples e intuitiva, onde os usuários podem:
 
@@ -14,7 +14,7 @@ O **MyRepositorios App** oferece uma interface simples e intuitiva, onde os usu�
 
 Este projeto é um excelente exemplo de como utilizar `useState` e `useEffect` para gerenciar o estado e os efeitos colaterais em uma aplicação React.
 
-## Tecnologias Utilizadas
+## :computer: Tecnologias Utilizadas
 
 - **React**: Biblioteca principal utilizada para construir a interface do usuário.
 - **Axios**: Biblioteca utilizada para fazer as requisições HTTP à API do GitHub.
@@ -22,7 +22,7 @@ Este projeto é um excelente exemplo de como utilizar `useState` e `useEffect` p
 - **localStorage**: Ultilizado para armazenar os repositórios selecionados.
 
 
-## Funcionalidades Principais
+## :page_with_curl: Funcionalidades Principais
 
 ### Pesquisa de Repositórios
 
@@ -36,7 +36,7 @@ Os usuários podem salvar repositórios que acharem interessantes. Esses reposit
 
 Os usuários podem excluir repositórios previamente salvos. Essa ação remove o repositório do localStorage, refletindo imediatamente na interface do usuário.
 
-## Aprendizados com `useState` e `useEffect`
+## :pencil2: Aprendizados com `useState` e `useEffect`
 
 ### `useState`
 
@@ -137,7 +137,7 @@ O hook useEffect é utilizado para lidar com efeitos colaterais, como buscar dad
         load();
     }, [filter, page, name.repositorio]); // Reexecuta o efeito quando o filtro ou a página muda
 
-## Como executar o projeto.
+## :space_invader: Como executar o projeto.
 
 Para executar este projeto localmente, siga os passos abaixo:
 1.Clone o repositório:
@@ -159,7 +159,7 @@ Para executar este projeto localmente, siga os passos abaixo:
 
   * Abra o navegador e vá para http://localhost:3000.
 
-## Conclusão
+## :dart: Conclusão
 
 Este projeto serviu como uma excelente oportunidade para aprofundar o conhecimento em React, especialmente na utilização dos hooks `useState` e `useEffect`. Ao trabalhar com estado e efeitos colaterais, foi possível entender melhor como gerenciar e sincronizar o estado da interface com fontes de dados externas como APIs e bancos de dados em tempo real.
 
